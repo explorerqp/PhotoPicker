@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="me.iwf.PhotoPickerDemo"
+          package="me.iwf.PhotoPickerDemo"
     >
+
     <permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <!--
       - Include all the "features" under the camera permission,
@@ -14,10 +15,10 @@
       -->
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="false" />
+        android:required="false"/>
     <uses-feature
         android:name="android.hardware.camera.autofocus"
-        android:required="false" />
+        android:required="false"/>
 
     <application
         android:allowBackup="true"
@@ -37,13 +38,13 @@
 
 
         <activity
-            android:theme="@style/customTheme"
             android:name="me.iwf.photopicker.PhotoPickerActivity"
+            android:theme="@style/customTheme"
             />
 
         <activity
-            android:theme="@style/customTheme"
             android:name="me.iwf.photopicker.PhotoPagerActivity"
+            android:theme="@style/customTheme"
             />
 
     </application>

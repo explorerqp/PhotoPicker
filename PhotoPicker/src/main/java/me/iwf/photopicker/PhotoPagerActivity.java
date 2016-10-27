@@ -63,7 +63,12 @@ public class PhotoPagerActivity extends AppCompatActivity {
           int position = pagerFragment.getViewPager().getCurrentItem();
           pagerFragment.getPaths().remove(position);
           pagerFragment.getViewPager().getAdapter().notifyDataSetChanged();
-
+          if(pagerFragment.getPaths().size() == 0) {
+            Intent intent = new Intent();
+            intent.putExtra(KEY_SELECTED_PHOTOS, pagerFragment.getPaths());
+            setResult(RESULT_OK, intent);
+            finish();
+          }
         }
       });
     }

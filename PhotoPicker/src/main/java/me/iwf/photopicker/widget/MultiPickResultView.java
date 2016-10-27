@@ -10,7 +10,6 @@ import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -82,8 +81,9 @@ public class MultiPickResultView extends FrameLayout {
         this(context, attrs, defStyleAttr);
     }
 
-    public void init(Activity context,@MultiPicAction  int action, ArrayList<String> photos){
+    public void init(Activity context,@MultiPicAction  int action, ArrayList<String> photos, int maxCount){
         this.action = action;
+        this.maxCount = maxCount;
 
         selectedPhotos = new ArrayList<>();
 
@@ -93,6 +93,7 @@ public class MultiPickResultView extends FrameLayout {
         }
         photoAdapter = new PhotoAdapter(context, selectedPhotos);
         photoAdapter.setAction(action);
+        photoAdapter.setMaxCount(maxCount);
         recyclerView.setAdapter(photoAdapter);
         //recyclerView.setLayoutFrozen(true);
 
@@ -131,7 +132,7 @@ public class MultiPickResultView extends FrameLayout {
 
                 @Override
                 public void onPickFail(String error) {
-                    Toast.makeText(getContext(),error,Toast.LENGTH_LONG).show();
+                    ToastWidget.show(getContext(),error);
                     selectedPhotos.clear();
                     photoAdapter.notifyDataSetChanged();
                 }

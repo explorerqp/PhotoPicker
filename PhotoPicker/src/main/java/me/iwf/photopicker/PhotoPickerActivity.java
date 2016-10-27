@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +13,8 @@ import me.iwf.photopicker.event.OnItemCheckListener;
 import me.iwf.photopicker.fragment.ImagePagerFragment;
 import me.iwf.photopicker.fragment.PhotoPickerFragment;
 import me.iwf.photopicker.widget.Titlebar;
+import me.iwf.photopicker.widget.ToastWidget;
 
-import static android.widget.Toast.LENGTH_LONG;
 import static me.iwf.photopicker.PhotoPicker.DEFAULT_COLUMN_NUMBER;
 import static me.iwf.photopicker.PhotoPicker.DEFAULT_MAX_COUNT;
 import static me.iwf.photopicker.PhotoPicker.EXTRA_GRID_COLUMN;
@@ -107,7 +106,7 @@ public class PhotoPickerActivity extends AppCompatActivity {
           setResult(RESULT_OK, intent);
           finish();
         }else {
-          Toast.makeText(getApplicationContext(),"还没有选择图片",Toast.LENGTH_SHORT).show();
+          ToastWidget.show(getApplicationContext(),"还没有选择图片");
         }
       }
     });
@@ -124,22 +123,21 @@ public class PhotoPickerActivity extends AppCompatActivity {
           List<Photo> photos = pickerFragment.getPhotoGridAdapter().getSelectedPhotos();
           if (!photos.contains(photo)) {
             photos.clear();
-            pickerFragment.getPhotoGridAdapter().notifyDataSetChanged();
-          }
-          return true;
+  pickerFragment.getPhotoGridAdapter().notifyDataSetChanged();
+}
+return true;
         }
 
         if (total > maxCount) {
-          Toast.makeText(getActivity(), getString(R.string.__picker_over_max_count_tips, maxCount),
-              LENGTH_LONG).show();
-          return false;
+        ToastWidget.show(getActivity(), getString(R.string.__picker_over_max_count_tips, maxCount));
+        return false;
         }
         titlebar.getTvRight().setText(getString(R.string.__picker_done_with_count, total, maxCount));
         return true;
-      }
-    });
+        }
+        });
 
-  }
+        }
 
 
   /**
