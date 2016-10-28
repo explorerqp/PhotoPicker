@@ -106,7 +106,7 @@ public class PhotoPickerActivity extends AppCompatActivity {
           setResult(RESULT_OK, intent);
           finish();
         }else {
-          ToastWidget.show(getApplicationContext(),"还没有选择图片");
+          ToastWidget.show(PhotoPickerActivity.this,"还没有选择图片");
         }
       }
     });
